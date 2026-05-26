@@ -1,3 +1,9 @@
+/*
+    Modificado em 26/05/2026 por : 
+     - Érick Pereira Calauro
+     - Gustavo Machado Borges Daniel
+*/
+
 #ifndef __BTree_h
 #define __BTree_h
 
@@ -7,17 +13,18 @@ struct BTree {
 };
 
 struct BNode {
-    int n_keys;
-    char** keys;
+    int n_keys; // Número de chaves
+    int m_children; // Número de filhos
+    const char** keys;
     struct BNode** children; 
 };
 
 typedef struct BTree BTree;
 typedef struct BNode BNode;
 
-BNode* b_create(int n_keys, char** keys, BNode** children);
-int b_comparator(const char* c1, const int l1, const char* c2, const int l2);
-void b_search(const char* key, BNode* pt, int* f, int g);
+BTree* b_create_tree(const int d, const char* root_key);
+BNode* b_create_node(const int n_keys, const int m_children, const char** keys, BNode** children);
+void b_search(BTree* tree, const char* key, BNode* pt, int* f, int* g);
 void b_insert(); // Definir
 
 #endif
