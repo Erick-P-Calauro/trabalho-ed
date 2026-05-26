@@ -23,8 +23,8 @@ typedef struct BTree BTree;
 typedef struct BNode BNode;
 
 BTree* b_create_tree(const int d, const char* root_key);
-BNode* b_create_node(const int n_keys, const int m_children, const char** keys, BNode** children);
-void b_search(BTree* tree, const char* key, BNode* pt, int* f, int* g);
+BNode* b_create_node(const int n_keys);
+void b_search(BTree* tree, const char* key, BNode** pt, int* f, int* g);
 void b_insert(); // Definir
 
 #endif
