@@ -4,7 +4,7 @@
 
 #include "BTree.h"
 
-void b_insert(BTree* tree, const char* key){
+void b_insert(BTree* tree, char* key){
     if(tree == NULL){ // verifica se a árvore existe
         return;
     }
