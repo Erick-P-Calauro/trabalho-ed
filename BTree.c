@@ -10,7 +10,7 @@
 #include <string.h>
 #include "BTree.h"
 
-BTree* b_create_tree(const int d, const char* root_key) {
+BTree* b_create_tree(const int d, char* root_key) {
     BTree* tree = (BTree*) malloc(sizeof(BTree));
 
     tree->d = d;
@@ -23,18 +23,10 @@ BTree* b_create_tree(const int d, const char* root_key) {
 BNode* b_create_node(const int n_keys) {
     BNode* node = (BNode*) malloc(sizeof(BNode));
 
-    const char** nkeys = (const char**) malloc(sizeof(const char*) * (n_keys+1));
-    BNode** nchildren = (BNode**) malloc(sizeof(BNode*) * (n_keys + 2));
-
-    for(int i = 1; i <= (n_keys+1); i++)
-        nkeys[i]=NULL;
-    for(int i = 0; i <= (n_keys+1); i++)
-        nchildren[i]=NULL;
-
     node->n_keys = n_keys;
     node->m_children = n_keys + 1;
-    node->keys = nkeys;
-    node->children = nchildren;
+    node->keys = (char**) malloc(sizeof(char*) * (n_keys+1));;
+    node->children = (BNode**) malloc(sizeof(BNode*) * (n_keys + 2));
 
     return node;
 }
@@ -44,7 +36,7 @@ BNode* b_create_node(const int n_keys) {
 // pt -> Ponteiro  mantido fora da função
 // f -> Argumento para sinalizar estado da busca
 // g -> Posição da última página na árvore
-void b_search(BTree* tree, const char * key, BNode** pt, int* f, int* g) {
+void b_search(BTree* tree, char * key, BNode** pt, int* f, int* g) {
 
     BNode* p = tree->root;
     *pt = NULL;

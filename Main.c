@@ -17,7 +17,8 @@ int main() {
 
     // printf("%d %d %d \n", strcpy("Abra", "Alakazam"));
 
-    BTree* tree = b_create_tree(1, "Bulbassaur");
+    char * b = "Bulbassaur";
+    BTree* tree = b_create_tree(1, b);
     
     tree->root->children[0] = b_create_node(1);
     tree->root->children[0]->keys[1] = "Abra";
