@@ -1,11 +1,13 @@
 /*
     Modificado em 30/05/2026 por : 
+     - Davo Gaborim Fernandes Pereira
      - Érick Pereira Calauro
      - Gustavo Machado Borges Daniel
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include <string.h>
 #include "BTree.h"
 
@@ -198,7 +200,7 @@ void b_insert(BTree* tree, char* key){
         // atualiza raiz da árvore
         tree->root = new_root;
     }
-    else{ // se raiz não está cheia:
+    else{ // se raiz não está cheia:1
         b_insert_nonfull(tree, tree->root, key);
     }
 }
@@ -243,4 +245,20 @@ void b_insert_nonfull(BTree* tree, BNode* node, const char* key){
         // continua inserção recursivamente
         b_insert_nonfull(tree, node->children[i], key);
     }
+}
+
+void read_pokemon(BTree* tree){
+    FILE* pokemon_names = fopen("pokemon_names.txt", "r");
+    assert(pokemon_names != NULL);
+
+    char* buffer = (char*) malloc(sizeof(char) * 100);
+
+    while(fscanf(pokemon_names, "%s", buffer) == 1) {
+        b_insert(tree, buffer);
+    }
+
+    free(buffer);
+    fclose(pokemon_names);
+
+    return;
 }

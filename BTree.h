@@ -1,5 +1,5 @@
 /*
-    Modificado em 26/05/2026 por : 
+    Modificado em 30/05/2026 por : 
      - Érick Pereira Calauro
      - Gustavo Machado Borges Daniel
 */
@@ -23,11 +23,10 @@ struct BNode {
 typedef struct BTree BTree;
 typedef struct BNode BNode;
 
-BTree* b_create_tree(const int d, char* root_key);
-BNode* b_create_node(const int n_keys);
 void b_search(BTree* tree, char* key, BNode** pt, int* f, int* g);
 void b_insert(BTree* tree, char* key);
 void b_split_child(BTree* tree, BNode* parent, int index);
 void b_insert_nonfull(BTree* tree, BNode* node, const char* key);
+void read_pokemon(BTree* tree);
 
 #endif
