@@ -17,25 +17,24 @@ int main() {
 
     // printf("%d %d %d \n", strcpy("Abra", "Alakazam"));
 
-    char * b = "Bulbassaur";
-    BTree* tree = b_create_tree(1, b);
-    
-    tree->root->children[0] = b_create_node(1);
-    tree->root->children[0]->keys[1] = "Abra";
+    BTree tree;
+    tree.d = 2;
+    tree.root = NULL;
 
-    tree->root->children[1] = b_create_node(1);
-    tree->root->children[1]->keys[1] = "Charmander";
+    b_insert(&tree, "Bulbassaur");
+    b_insert(&tree, "Abra");
+    b_insert(&tree, "Charmander");
 
-    printf("Dimension : %d \n", tree->d);
-    printf("Root : %d %d \n", tree->root->n_keys, tree->root->m_children);
-    printf("Key : %s \n", tree->root->children[0]->keys[1]);
-    printf("Key : %s \n", tree->root->keys[1]);
-    printf("Key : %s \n", tree->root->children[1]->keys[1]);
+    printf("Dimension : %d \n", tree.d);
+    printf("Root : %d %d \n", tree.root->n_keys, tree.root->m_children);
+
+    for(int i = 0; i < tree.root->n_keys; i++)
+        printf("%s\n", tree.root->keys[i]);
 
     BNode *pt;
     int f = 0, g = 0;
 
-    b_search(tree, "Charmander", &pt, &f, &g);
+    b_search(&tree, "Charmander", &pt, &f, &g);
 
     printf("Salve : %d %d\n", f, g);
     printf("%s", pt->keys[g]);
